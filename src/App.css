@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.App {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #3a86ff;
+}
+
+form {
+    position: relative;
+    width: 300px;
+    margin: auto;
+}
+
+input {
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    background: #ffffff;
+    box-shadow: inset 3px 3px 8px #d9d9d9, inset -3px -3px 8px #ffffff, 3px 3px 8px #d9d9d9, -3px -3px 8px #ffffff;
+    margin-bottom: 50px;
+}
+
+textarea {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #fff;
+    width: 100%;
+    resize: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .6s ease-in-out;
+}
+
+textarea.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.enter-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    margin-top: 10px;
+}
+
+.enter-btn-update {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.enter-arrow {
+    height: 4vmin;
+    display: inline-block;
+    cursor: pointer;
+}
+
+li.form-update {
+    display: flex;
+    flex-direction: column;
+}
+
+.enter-arrow-update {
+    height: 2vmin;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: .6s ease-in-out;
+}
+
+.enter-arrow-update.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.empty-img {
+    height: 10vmin;
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+div.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.title .list {
+    width: 10vmin;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .enter-arrow {
+        animation: move infinite 5s linear;
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.list::before {
+    content: 'Todos List';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    margin-top: 100px;
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: .1;
+}
+
+
+/* CARD  */
+
+.card {
+    position: relative;
+    width: 350px;
+    min-height: 350px;
+    height: auto;
+    transform-style: preserve-3d;
+    margin: 40px auto;
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.card .card-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 2s ease-in-out;
+    transform: perspective(500px) rotateY(0deg);
+    color: #ffffff;
+}
+
+.card .card-side.front {
+    background: #8338ec;
+    border-radius: 30px;
+}
+
+.card .card-side.back {
+    color: #ffffff;
+    border-radius: 30px;
+    background: #fb5607;
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.card .card-side.back ul li {
+    font-size: 1rem;
+    transform: perspective(500px) translateZ(6px);
+    padding: 5px;
+    text-transform: capitalize;
+}
+
+.card .card-side.back ul li span.line {
+    display: inline-block;
+    position: relative;
+    opacity: 1;
+    transition: opacity .6s ease-in-out;
+}
+
+.card .card-side.back ul li span.line.hide {
+    opacity: 0;
+}
+
+.card .card-side.back ul li span.line:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 0;
+    height: 2px;
+    display: block;
+    background: #ffbe0b;
+    transition: width 3s ease-in-out;
+}
+
+.card .card-side.back ul li span.line.width:after {
+    width: 100%;
+}
+
+h4 {
+    text-transform: capitalize;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.card:hover .card-side.front {
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.card:hover .card-side.back {
+    transform: perspective(500px) rotateY(360deg);
+}
+
+.card .card-side h4 {
+    color: #ffffff;
+    transform: perspective(500px) translateZ(50px);
+    margin: auto 50px;
+}
+
+.card-btns {
+    margin-top: 13px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    transform-style: preserve-3d;
+}
+
+.card-btn-complete,
+.card-btn-delete,
+.card-btn-update {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 50%;
+    background: #fb5607;
+    box-shadow: inset 2px 2px 6px #d54906, inset -2px -2px 6px #ff6308, 2px 2px 6px #d54906, -2px -2px 6px #ff6308;
+    transition: .6s ease-in-out;
+}
+
+.card-btn-complete:hover,
+.card-btn-delete:hover,
+.card-btn-update:hover {
+    transform: scale(.96);
+    box-shadow: inset 2px 2px 6px #d9d9d9, inset -2px -2px 6px #ffffff, 2px 2px 6px #d9d9d9, -2px -2px 6px #ffffff;
+}
+
+.card-btn-update img,
+.card-btn-complete img,
+.card-btn-delete img {
+    height: 4vmin;
+    display: inline-block;
+}
+
+.msg {
+    min-width: 350px;
+    width: 350px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 5px;
+    color: #fb5607;
+}
+
+.total-todos {
+    color: #ff006e;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a.home img {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: 24px;
+    height: 24px;
+    z-index: 100;
+    cursor: pointer;
+    transition: .6s ease-in-out;
+    display: block;
+}
+
+a.home img:hover {
+    transform: translateX(-4px) scale(1.1);
+    fill: red;
+}
